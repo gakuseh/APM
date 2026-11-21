@@ -5,6 +5,7 @@ build = "build.rs"
 edition = "2024"
 
 [dependencies]
+jiff = "1.0.2"
 slint = "1.19.0"
 
 [build-dependencies]
