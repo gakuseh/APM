@@ -1,30 +1,62 @@
-import { Button, ListView, AboutSlint } from "std-widgets.slint";
+import { Button, ListView, AboutSlint, LineEdit } from "std-widgets.slint";
 import { Modal } from "components/modal.slint";
+import { DateInput } from "components/date-input.slint";
 export component Main inherits Window {
     maximized: true;
-    width: 500px;
-    height: 500px;
+
+    min-height: 500px;
+    min-width: 500px;
 
     new_task_popup := Modal {
         window-width: root.width;
-        window-height: root.width;
+        window-height: root.height;
 
         VerticalLayout {
+            padding: 10px;
+            cross-axis-alignment: CrossAxisAlignment.start;
+
             Text {
                 text: "New Task";
             }
 
             Text {
-                text: "Hello world!";
+                text: "Task name";
+            }
+
+            LineEdit {
+                width: 75%;
+                placeholder-text: "Task name";
             }
 
             Text {
-                text: "Hello world!";
+                text: "Task duration (minutes, rounds up to nearest 5)";
+            }
+
+            LineEdit {
+                width: 75%;
+                placeholder-text: "Task duration (minutes)";
+                input-type: number;
+            }
+
+            Text {
+                text: "Due date";
+            }
+
+            DateInput { }
+
+            Button {
+                text: "Create task";
+
+                clicked => {
+                    new_task_popup.close()
+                }
             }
         }
     }
 
     VerticalLayout {
+        padding: 10px;
+        cross-axis-alignment: CrossAxisAlignment.start;
 
         Text {
             text: "APM";
@@ -32,8 +64,6 @@ export component Main inherits Window {
 
         Button {
             text: "New Task";
-            width: 100px;
-            height: 50px;
 
             clicked => { new_task_popup.show() }
         }
