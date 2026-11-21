@@ -1,7 +1,15 @@
-import { Button, ListView, AboutSlint, LineEdit } from "std-widgets.slint";
+import {
+    Button,
+    ListView,
+    AboutSlint,
+    LineEdit,
+    Date,
+} from "std-widgets.slint";
 import { Modal } from "components/modal.slint";
 import { DateInput } from "components/date-input.slint";
 export component Main inherits Window {
+    callback new-task(string, int, Date);
+
     maximized: true;
 
     min-height: 500px;
@@ -23,7 +31,7 @@ export component Main inherits Window {
                 text: "Task name";
             }
 
-            LineEdit {
+            name-input := LineEdit {
                 width: 75%;
                 placeholder-text: "Task name";
             }
@@ -32,7 +40,7 @@ export component Main inherits Window {
                 text: "Task duration (minutes, rounds up to nearest 5)";
             }
 
-            LineEdit {
+            duration-input := LineEdit {
                 width: 75%;
                 placeholder-text: "Task duration (minutes)";
                 input-type: number;
@@ -42,12 +50,13 @@ export component Main inherits Window {
                 text: "Due date";
             }
 
-            DateInput { }
+            date-input := DateInput { }
 
             Button {
                 text: "Create task";
 
                 clicked => {
+                    new-task(name-input.text, duration-input.text.to-float(), date-input.date);
                     new_task_popup.close()
                 }
             }
