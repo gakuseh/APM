@@ -1,3 +1,4 @@
+slint::include_modules!();
 fn main() {
-    println!("Hello, world!");
+    Main::new().unwrap().run().unwrap();
 }
