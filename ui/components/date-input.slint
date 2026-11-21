@@ -1,0 +1,33 @@
+import { Button, DatePickerPopup, Date } from "std-widgets.slint";
+export component DateInput inherits Rectangle {
+    property <Date> date: { year: 2026, month: 11, day: 1 };
+
+    width: txt.width + 10px;
+    height: txt.height + 10px;
+
+    background: gray;
+
+    txt := Text {
+        text: date.year + "-" + date.month + "-" + date.day;
+    }
+
+    TouchArea {
+        clicked => {
+            date-picker.show();
+        }
+    }
+
+    date-picker := DatePickerPopup {
+        x: (root.width - self.width) / 2;
+        y: (root.height - self.height) / 2;
+        close-policy: PopupClosePolicy.no-auto-close;
+
+        accepted(date) => {
+            root.date = date;
+            date-picker.close();
+        }
+        canceled => {
+            date-picker.close();
+        }
+    }
+}
