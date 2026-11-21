@@ -1,0 +1,22 @@
+export component Modal inherits PopupWindow {
+    close-policy: close-on-click-outside;
+    
+    in property <length> window-width;
+    in property <length> window-height;
+
+    x: window-width / 2 - self.width / 2;
+    y: window-height / 2 - self.height / 2;
+
+    // make everything in the background (not part of the modal)
+    Rectangle {
+        background: black;
+        opacity: 0.5;
+        width: window-width;
+        height: window-height;
+    }
+
+    // actual background
+    Rectangle {
+        background: gray;
+    }
+}
