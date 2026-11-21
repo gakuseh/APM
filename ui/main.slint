@@ -8,7 +8,7 @@ import {
 import { Modal } from "components/modal.slint";
 import { DateInput } from "components/date-input.slint";
 export component Main inherits Window {
-    callback new-task(string, int, Date);
+    callback new-task(string, int, Date) -> bool;
 
     maximized: true;
 
@@ -56,7 +56,14 @@ export component Main inherits Window {
                 text: "Create task";
 
                 clicked => {
-                    new-task(name-input.text, duration-input.text.to-float(), date-input.date);
+                    let submit-result = new-task(name-input.text, duration-input.text.to-float(), date-input.date);
+
+                    if submit-result {
+                        debug("UI: Form submit success");
+                    } else {
+                        debug("UI: Form submit FAIL");
+                    }
+
                     new_task_popup.close()
                 }
             }
