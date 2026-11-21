@@ -1,0 +1,43 @@
+import { Button, ListView, AboutSlint } from "std-widgets.slint";
+import { Modal } from "components/modal.slint";
+export component Main inherits Window {
+    maximized: true;
+    width: 500px;
+    height: 500px;
+
+    new_task_popup := Modal {
+        window-width: root.width;
+        window-height: root.width;
+
+        VerticalLayout {
+            Text {
+                text: "New Task";
+            }
+
+            Text {
+                text: "Hello world!";
+            }
+
+            Text {
+                text: "Hello world!";
+            }
+        }
+    }
+
+    VerticalLayout {
+
+        Text {
+            text: "APM";
+        }
+
+        Button {
+            text: "New Task";
+            width: 100px;
+            height: 50px;
+
+            clicked => { new_task_popup.show() }
+        }
+
+        ListView { }
+    }
+}
