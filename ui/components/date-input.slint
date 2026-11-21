@@ -1,6 +1,6 @@
 import { Button, DatePickerPopup, Date } from "std-widgets.slint";
 export component DateInput inherits Rectangle {
-    property <Date> date: { year: 2026, month: 11, day: 1 };
+    out property <Date> date: { year: 2026, month: 11, day: 1 };
 
     width: txt.width + 10px;
     height: txt.height + 10px;
